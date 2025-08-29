@@ -1,18 +1,22 @@
 ---
 import svgPinkStar from '../assets/pink-star.svg'
 import Button from './Button.astro'
-import { buy } from '../sample'
-
 ---
 
-
-<section class="px-3" id="hire">
-    <div class="max-w-3xl mx-auto bg-white text-center flex flex-col gap-4 border-3 shadow-[8px_8px_0px_rgba(0,0,0,0.3)]  relative p-10">
-     <h1 class="text-3xl">Let’s start designing your project</h1>
-     <p class="text-lg max-w-lg mx-auto">Want to see how to transform your brand into a unique style. send me a message</p>
-     <div class="flex justify-center">
-       <Button text={buy.title} link={buy.link} target="_blank" />
-     </div>
-     <img src={svgPinkStar.src} alt="svg" width="80" class="absolute -top-10 right-20" />
+<section class="px-3 py-20 bg-gray-50" id="hire">
+  <div class="max-w-3xl mx-auto bg-white text-center flex flex-col gap-6 border-3 shadow-[8px_8px_0px_rgba(0,0,0,0.3)] relative p-12 rounded-xl">
+    
+    <h1 class="text-3xl md:text-4xl font-bold">Let’s Build Something Amazing Together</h1>
+    
+    <p class="text-lg md:text-xl max-w-lg mx-auto text-gray-700">
+      Want to bring your ideas to life? Get in touch and let's create something remarkable.
+    </p>
+    
+    <div class="flex flex-col sm:flex-row justify-center gap-4 mt-6">
+      <Button text="Send Me a Message" link="mailto:abhishekchoudhary2440@gmail.com" target="_blank" />
+      <Button text="Visit My GitHub" link="https://github.com/Dhankarabhi" target="_blank" />
     </div>
-  </section>
+    
+    <img src={svgPinkStar.src} alt="svg" width="80" class="absolute -top-10 right-8 md:right-20 animate-bounce" />
+  </div>
+</section>
