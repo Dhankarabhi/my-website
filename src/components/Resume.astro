@@ -1,0 +1,22 @@
+---
+import svgUnderline from '../assets/underline.svg'
+---
+
+<section class="py-20 px-5 bg-[var(--main-bg)]" id="resume">
+  <div class="max-w-3xl mx-auto text-center relative">
+    <h1 class="text-4xl font-medium">My Resume</h1>
+    <img src={svgUnderline.src} alt="underline" width="140" class="absolute left-1/2 -translate-x-1/2 -bottom-2" />
+    <p class="mt-4 text-lg text-gray-700">
+      A quick overview of my skills, work experience, and education.  
+      You can download the full version below.
+    </p>
+    <div class="flex justify-center mt-6 gap-4">
+      <a href="/resume.pdf" target="_blank" class="px-5 py-3 bg-black text-white font-medium border-2 border-black hover:bg-white hover:text-black transition">
+        📄 View Resume
+      </a>
+      <a href="/resume.pdf" download class="px-5 py-3 bg-[var(--yellow)] font-medium border-2 border-black hover:bg-white transition">
+        ⬇ Download Resume
+      </a>
+    </div>
+  </div>
+</section>

@@ -13,8 +13,24 @@ import Button from './Button.astro'
     </p>
     
     <div class="flex flex-col sm:flex-row justify-center gap-4 mt-6">
-      <Button text="Send Me a Message" link="mailto:abhishekchoudhary2440@gmail.com" target="_blank" />
-      <Button text="Visit My GitHub" link="https://github.com/Dhankarabhi" target="_blank" />
+      <Button 
+        text="Send Me a Message" 
+        link="mailto:abhishekchoudhary2440@gmail.com" 
+        target="_blank" 
+        class="w-full sm:w-auto transform transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+      />
+      <Button 
+        text="Visit My GitHub" 
+        link="https://github.com/Dhankarabhi" 
+        target="_blank" 
+        class="w-full sm:w-auto transform transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+      />
+      <Button 
+        text="View My Resume" 
+        link="/resume.pdf" 
+        target="_blank" 
+        class="w-full sm:w-auto bg-pink-500 text-white hover:bg-pink-600 shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-xl"
+      />
     </div>
     
     <img src={svgPinkStar.src} alt="svg" width="80" class="absolute -top-10 right-8 md:right-20 animate-bounce" />
