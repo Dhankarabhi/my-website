@@ -29,10 +29,36 @@ import Button from './Button.astro'
         text="View My Resume" 
         link="/resume.pdf" 
         target="_blank" 
-        class="w-full sm:w-auto bg-pink-500 text-white hover:bg-pink-600 shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-xl"
+        class="w-full sm:w-auto bg-pink-500 text-white hover:bg-pink-600 shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-xl hover:resume-hover"
       />
     </div>
     
-    <img src={svgPinkStar.src} alt="svg" width="80" class="absolute -top-10 right-8 md:right-20 animate-bounce" />
+    <!-- Main pink star -->
+    <img id="pink-star" src={svgPinkStar.src} alt="svg" width="80" class="absolute -top-10 right-8 md:right-20 transition-all duration-300 ease-in-out animate-bounce" />
+    
+    <!-- Optional additional stars -->
+    <img src={svgPinkStar.src} alt="star" class="absolute top-5 left-10 w-6 h-6 transition-all duration-300 ease-in-out star-small" />
+    <img src={svgPinkStar.src} alt="star" class="absolute top-1/2 right-2 w-5 h-5 transition-all duration-300 ease-in-out star-small" />
   </div>
+
+  <style>
+    /* Hover effect: main star moves closer and scales */
+    .hover\\:resume-hover:hover ~ #pink-star {
+      right: 4rem; /* Adjust distance to Resume button */
+      transform: translateY(-10%) scale(1.05);
+    }
+
+    /* Optional: small stars react slightly */
+    .hover\\:resume-hover:hover ~ #pink-star ~ .star-small {
+      transform: translateY(-5%) scale(1.1) rotate(10deg);
+    }
+
+    /* Custom bounce for star (optional refinement) */
+    @keyframes bounceResume {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-8px) rotate(-10deg); }
+      50% { transform: translateY(-12px) rotate(5deg); }
+      75% { transform: translateY(-8px) rotate(-5deg); }
+    }
+  </style>
 </section>
