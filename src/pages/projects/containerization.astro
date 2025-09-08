@@ -1,0 +1,8 @@
+---
+import ProjectDetail from '../../components/ProjectDetail.astro';
+import { getProject } from '../../projectData.ts';
+
+const project = getProject('containerization');
+---
+
+<ProjectDetail project={project} />

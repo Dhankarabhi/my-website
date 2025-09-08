@@ -6,24 +6,32 @@ import arrowCard from '../assets/arrow-card.svg'
 
 const portfolio = [
   { 
+    id: 'cicd-pipeline',
     name: 'CI/CD Pipeline Automation',
     desc: `Jenkins - GitHub Actions - Docker - Kubernetes`,
-    cover: `https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1600`
+    cover: `https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1600`,
+    link: '/projects/cicd-pipeline'
   },
   { 
+    id: 'cloud-infrastructure',
     name: 'Cloud Infrastructure Setup',
     desc: `AWS - Terraform - Ansible`,
-    cover: `https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1600`
+    cover: `https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1600`,
+    link: '/projects/cloud-infrastructure'
   },
   { 
+    id: 'monitoring-observability',
     name: 'Monitoring & Observability',
     desc: `Prometheus - Grafana - ELK Stack`,
-    cover: `https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1600`
+    cover: `https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1600`,
+    link: '/projects/monitoring-observability'
   },
   { 
+    id: 'containerization',
     name: 'Containerization Projects',
     desc: `Docker - Kubernetes - Helm Charts`,
-    cover: `https://images.pexels.com/photos/1181674/pexels-photo-1181674.jpeg?auto=compress&cs=tinysrgb&w=1600`
+    cover: `https://images.pexels.com/photos/1181674/pexels-photo-1181674.jpeg?auto=compress&cs=tinysrgb&w=1600`,
+    link: '/projects/containerization'
   },
 ]
 
@@ -38,19 +46,41 @@ const portfolio = [
   
     <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10"> 
       {portfolio.map(item => ( 
-        <a href="#" class="flex flex-col bg-white p-5 group relative transition-all duration-200 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.3)]">
-          <div class="w-full h-[200px] overflow-hidden border-2">
-           <img src={item.cover} alt="" class="w-full h-full object-cover" />
+        <div class="flex flex-col bg-white p-5 group relative transition-all duration-300 hover:shadow-[8px_8px_0px_rgba(0,0,0,0.3)] hover:-translate-y-1">
+          <div class="w-full h-[200px] overflow-hidden border-2 mb-4">
+           <img src={item.cover} alt={item.name} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300" />
           </div>
-          <div class="space-y-1 pt-4">
-            <div class="flex pr-2">
-              <h2 class="text-xl font-medium flex-1">{item.name}</h2>
-              <img src={arrowCard.src} alt="arrow" width="25" />
+          <div class="space-y-3 pt-2 flex-1">
+            <div class="flex items-start justify-between">
+              <h2 class="text-xl font-medium flex-1 pr-4">{item.name}</h2>
+              <a href={item.link} class="flex-shrink-0 transition-transform duration-200 hover:scale-110 hover:rotate-12">
+                <img src={arrowCard.src} alt="view project" width="25" />
+              </a>
             </div>
-            <p class="mr-20">{item.desc}</p>
+            <p class="text-gray-600 mb-4">{item.desc}</p>
+            
+            <!-- Quick action buttons -->
+            <div class="flex gap-3 mt-4">
+              <a href={item.link} class="px-4 py-2 bg-[var(--blue)] text-black text-sm font-medium border-2 border-black hover:bg-[var(--yellow)] transition-colors duration-200">
+                View Details
+              </a>
+              <a href="#" class="px-4 py-2 bg-white text-black text-sm font-medium border-2 border-black hover:bg-gray-100 transition-colors duration-200">
+                Live Demo
+              </a>
+            </div>
           </div>
           <Bars />
-        </a>
+        </div>
       ))}
+    </div>
+
+    <!-- View All Projects Button -->
+    <div class="text-center mt-15">
+      <a href="/projects" class="inline-flex items-center gap-2 px-6 py-3 bg-black text-white font-medium border-3 border-black hover:bg-white hover:text-black transition-all duration-200">
+        View All Projects
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M16.01 11H4v2h12.01v3L20 12l-3.99-4v3z"/>
+        </svg>
+      </a>
     </div>
 </section>
