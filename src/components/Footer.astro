@@ -1,36 +1,312 @@
 ---
 import logoStar from '../assets/logo-star.svg'
+import svgPinkStar from '../assets/pink-star.svg'
 import { author } from '../sample'
 
 const socials = [
-  { icon: 'ri-linkedin-fill', link: author.linkedin },
-  { icon: 'ri-briefcase-line', link: author.naukri }, // Naukri / briefcase
-  { icon: 'ri-twitter-x-line', link: author.x },
-  { icon: 'ri-instagram-line', link: author.ig },
+  { icon: 'ri-linkedin-fill', link: author.linkedin, name: 'LinkedIn' },
+  { icon: 'ri-briefcase-line', link: author.naukri, name: 'Naukri' },
+  { icon: 'ri-twitter-x-line', link: author.x, name: 'Twitter' },
+  { icon: 'ri-instagram-line', link: author.ig, name: 'Instagram' },
+]
+
+const quickLinks = [
+  { name: 'Home', path: '/' },
+  { name: 'Portfolio', path: '/#work' },
+  { name: 'Blog', path: '/blog/' },
+  { name: 'Contact', path: '#hire' },
+]
+
+const stats = [
+  { number: '50+', label: 'Projects', icon: '🚀' },
+  { number: '99.9%', label: 'Uptime', icon: '⚡' },
+  { number: '4+', label: 'Years', icon: '💼' },
+  { number: '24/7', label: 'Support', icon: '🛠️' },
 ]
 ---
 
-<footer class="border-t-4 px-5 md:px-0 py-10 mt-30">
-  <div class="max-w-3xl mx-auto flex justify-center flex-col gap-5 md:gap-0 md:grid md:grid-cols-3 items-center">
-    <!-- Logo & Name -->
-    <div class="flex-1 font-bold">
-      <a href="/" class="flex items-center gap-3 text-xl">
-        <img src={logoStar.src} alt="logo" width="30" /> {author.nickname}
-      </a>
-    </div>
-
-    <!-- Copyright -->
-    <div class="text-center">
-      <p>© {new Date().getFullYear()} {author.nickname}. All rights reserved.</p>
-    </div>
-
-    <!-- Social Icons -->
-    <div class="flex md:justify-end gap-5 items-center">
-      {socials.map(item => (
-        <a href={item.link} target="_blank" class="transition-all duration-200 hover:translate-y-[2px] hover:text-blue-600">
-          <i class={`${item.icon} text-2xl align-middle text-black`}></i>
-        </a>
+<footer class="border-t-4 px-5 md:px-0 py-16 mt-30 relative overflow-hidden bg-white">
+  <!-- Floating background elements -->
+  <img src={svgPinkStar.src} alt="star" width="50" class="absolute right-10 top-10 opacity-20 animate-float" />
+  <img src={svgPinkStar.src} alt="star" width="40" class="absolute left-20 bottom-20 opacity-15 animate-bounce-slow" />
+  
+  <div class="max-w-5xl mx-auto relative z-10">
+    
+    <!-- Stats Section -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 animate-slide-up">
+      {stats.map((stat, index) => (
+        <div class={`group text-center p-6 bg-white border-3 border-black shadow-[4px_4px_0px_rgba(0,0,0,0.3)] hover:shadow-[8px_8px_0px_rgba(0,0,0,0.3)] hover:-translate-y-2 transition-all duration-300 animate-slide-up-stagger`} style={`animation-delay: ${index * 150}ms`}>
+          <div class="text-2xl mb-2 group-hover:animate-bounce">{stat.icon}</div>
+          <div class="text-2xl md:text-3xl font-bold text-[var(--blue)] mb-1 group-hover:text-black transition-colors duration-300">{stat.number}</div>
+          <div class="text-sm font-medium text-gray-600">{stat.label}</div>
+        </div>
       ))}
+    </div>
+    
+    <!-- Main Footer Content -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+      
+      <!-- Brand & Contact -->
+      <div class="space-y-6 animate-slide-left">
+        <a href="/" class="flex items-center gap-3 text-2xl font-bold group hover:scale-105 transition-transform duration-300">
+          <img src={logoStar.src} alt="logo" width="32" class="group-hover:animate-spin transition-transform duration-500" /> 
+          <span class="group-hover:text-[var(--blue)] transition-colors duration-300">{author.nickname}</span>
+        </a>
+        
+        <p class="text-gray-600 leading-relaxed animate-fade-in" style="animation-delay: 0.2s">
+          DevOps Engineer passionate about building scalable, secure cloud infrastructure and automation solutions that drive business success.
+        </p>
+
+        <!-- Contact Info with enhanced styling -->
+        <div class="space-y-4 animate-fade-in" style="animation-delay: 0.4s">
+          <a href="tel:+917078206056" class="group flex items-center gap-3 p-4 border-2 border-black hover:bg-[var(--yellow)] hover:shadow-[4px_4px_0px_rgba(0,0,0,0.3)] transition-all duration-300 hover:-translate-y-1">
+            <span class="text-2xl group-hover:animate-bounce">📱</span>
+            <div>
+              <div class="font-bold">Call Me</div>
+              <div class="text-sm text-gray-600">+91 70782 06056</div>
+            </div>
+          </a>
+          <a href="mailto:abhishekchoudhary2440@gmail.com" class="group flex items-center gap-3 p-4 border-2 border-black hover:bg-[var(--blue)] hover:shadow-[4px_4px_0px_rgba(0,0,0,0.3)] transition-all duration-300 hover:-translate-y-1">
+            <span class="text-2xl group-hover:animate-bounce">📧</span>
+            <div>
+              <div class="font-bold">Email Me</div>
+              <div class="text-sm text-gray-600">Quick Response</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="space-y-6 animate-slide-up" style="animation-delay: 0.3s">
+        <h3 class="text-xl font-bold relative">
+          Quick Links
+          <div class="absolute -bottom-2 left-0 w-16 h-1 bg-[var(--yellow)] animate-expand"></div>
+        </h3>
+        <ul class="space-y-3">
+          {quickLinks.map((link, index) => (
+            <li class="animate-slide-left" style={`animation-delay: ${0.5 + index * 0.1}s`}>
+              <a href={link.path} class="group flex items-center gap-3 text-gray-600 hover:text-black transition-all duration-300 hover:translate-x-2 p-2 hover:bg-gray-50">
+                <span class="group-hover:animate-bounce">→</span>
+                <span>{link.name}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="space-y-6 animate-slide-right" style="animation-delay: 0.4s">
+        <h3 class="text-xl font-bold relative">
+          Ready to Start?
+          <div class="absolute -bottom-2 left-0 w-16 h-1 bg-[var(--blue)] animate-expand" style="animation-delay: 0.2s"></div>
+        </h3>
+        <p class="text-gray-600 leading-relaxed animate-fade-in" style="animation-delay: 0.6s">
+          Let's discuss your project and build something amazing together.
+        </p>
+        
+        <!-- Availability Status -->
+        <div class="flex items-center gap-3 p-3 bg-green-50 border-2 border-green-300 animate-pulse-slow">
+          <div class="relative">
+            <div class="w-3 h-3 bg-green-500 rounded-full animate-ping absolute"></div>
+            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+          </div>
+          <span class="text-green-700 font-medium text-sm">Available for new projects</span>
+        </div>
+
+        <div class="space-y-3 animate-fade-in" style="animation-delay: 0.8s">
+          <a href="#hire" class="group block w-full bg-[var(--yellow)] text-black text-center py-4 px-6 font-bold border-3 border-black hover:bg-[var(--blue)] hover:scale-105 transition-all duration-300 hover:shadow-[6px_6px_0px_rgba(0,0,0,0.3)] relative overflow-hidden">
+            <span class="relative z-10 flex items-center justify-center gap-2">
+              <span class="group-hover:animate-bounce">🚀</span>
+              Get In Touch
+            </span>
+            <div class="absolute inset-0 bg-white transform scale-0 group-hover:scale-100 transition-transform duration-300"></div>
+          </a>
+          <a href="/resume.pdf" target="_blank" class="group block w-full bg-white text-black text-center py-4 px-6 font-bold border-3 border-black hover:bg-gray-100 hover:scale-105 transition-all duration-300 hover:shadow-[6px_6px_0px_rgba(0,0,0,0.3)]">
+            <span class="flex items-center justify-center gap-2">
+              <span class="group-hover:animate-pulse">📄</span>
+              Download Resume
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Divider with animation -->
+    <div class="border-t-3 border-gray-200 my-12 animate-expand"></div>
+
+    <!-- Social Links Section -->
+    <div class="text-center mb-12 animate-slide-up" style="animation-delay: 1s">
+      <h4 class="text-lg font-bold mb-6">Follow My Journey</h4>
+      <div class="flex justify-center gap-4">
+        {socials.map((item, index) => (
+          <a href={item.link} target="_blank" class={`group flex flex-col items-center gap-2 p-4 border-3 border-black bg-white hover:bg-[var(--yellow)] hover:shadow-[6px_6px_0px_rgba(0,0,0,0.3)] transition-all duration-300 hover:-translate-y-3 hover:rotate-3 animate-slide-up-stagger`} style={`animation-delay: ${1.2 + index * 0.1}s`}>
+            <i class={`${item.icon} text-2xl group-hover:animate-bounce`}></i>
+            <span class="text-xs font-medium">{item.name}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Bottom Section -->
+    <div class="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t-2 border-gray-200">
+      <!-- Copyright -->
+      <div class="text-center md:text-left animate-fade-in" style="animation-delay: 1.4s">
+        <p class="text-gray-500 font-medium">© {new Date().getFullYear()} {author.nickname}. All rights reserved.</p>
+        <p class="text-gray-400 text-sm mt-1">Built with ❤️ using Astro & TailwindCSS</p>
+      </div>
+
+      <!-- Tech Stack with hover effects -->
+      <div class="flex items-center gap-4 animate-slide-left" style="animation-delay: 1.6s">
+        <span class="text-gray-500 text-sm font-medium">Powered by:</span>
+        <div class="flex gap-2">
+          <div class="group w-10 h-10 bg-[var(--yellow)] border-2 border-black flex items-center justify-center text-xs font-bold hover:bg-[var(--blue)] hover:scale-110 transition-all duration-300 hover:rotate-12">
+            <span class="group-hover:animate-pulse">AWS</span>
+          </div>
+          <div class="group w-10 h-10 bg-[var(--blue)] border-2 border-black flex items-center justify-center text-xs font-bold hover:bg-[var(--yellow)] hover:scale-110 transition-all duration-300 hover:rotate-12">
+            <span class="group-hover:animate-pulse">K8s</span>
+          </div>
+          <div class="group w-10 h-10 bg-white border-2 border-black flex items-center justify-center text-xs font-bold hover:bg-[var(--yellow)] hover:scale-110 transition-all duration-300 hover:rotate-12">
+            <span class="group-hover:animate-pulse">TF</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Back to Top with animation -->
+      <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="group flex items-center gap-2 text-gray-500 hover:text-black transition-all duration-300 hover:scale-110 animate-fade-in" style="animation-delay: 1.8s">
+        <span class="text-sm font-medium">Back to top</span>
+        <div class="p-2 border-2 border-gray-300 group-hover:border-black group-hover:bg-[var(--yellow)] transition-all duration-300">
+          <i class="ri-arrow-up-line text-lg group-hover:animate-bounce"></i>
+        </div>
+      </a>
     </div>
   </div>
 </footer>
+
+<style>
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slide-left {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-right {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes expand {
+    from { width: 0%; }
+    to { width: 100%; }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(5deg);
+    }
+  }
+
+  @keyframes bounce-slow {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-up-stagger {
+    animation: slide-up 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-left {
+    animation: slide-left 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-slide-right {
+    animation: slide-right 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-expand {
+    animation: expand 1.2s ease-out forwards;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce-slow 4s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 2s ease-in-out infinite;
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    .animate-slide-up,
+    .animate-slide-left,
+    .animate-slide-right,
+    .animate-fade-in,
+    .animate-slide-up-stagger {
+      animation-delay: 0.1s !important;
+    }
+  }
+</style>
