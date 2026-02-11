@@ -245,6 +245,130 @@ export const projects = {
       diagram: 'https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=1200',
       description: 'Kubernetes cluster architecture showing microservices deployment, service mesh configuration, ingress routing, and autoscaling components with persistent storage and monitoring integration.'
     }
+  },
+
+  'awx-automation': {
+    id: 'awx-automation',
+    name: 'AWX Ansible Automation Platform',
+    description: 'Enterprise-grade Ansible automation platform deployment with AWX for centralized playbook management and job scheduling.',
+    longDescription: 'Deployed and configured AWX (Ansible Tower open-source version) to provide a web-based interface for managing Ansible playbooks, inventories, and job scheduling. The platform enables team collaboration, credential management, and provides detailed job execution logs and reporting.',
+    technologies: ['AWX', 'Ansible', 'PostgreSQL', 'Redis', 'Docker', 'Kubernetes', 'LDAP', 'Nginx'],
+    mainImage: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    liveUrl: '#',
+    githubUrl: 'https://github.com/Dhankarabhi',
+    stats: {
+      duration: '6 Weeks',
+      complexity: 'Advanced',
+      impact: '90% Faster'
+    },
+    features: [
+      'Web-based Ansible playbook management interface',
+      'Role-based access control (RBAC) with LDAP integration',
+      'Centralized credential and inventory management',
+      'Scheduled and on-demand job execution',
+      'Real-time job monitoring and logging',
+      'RESTful API for automation integration',
+      'Multi-tenant organization support',
+      'Detailed reporting and audit trails'
+    ],
+    challenges: [
+      {
+        problem: 'Complex credential management across multiple environments',
+        solution: 'Implemented encrypted credential storage with LDAP integration and role-based access controls'
+      },
+      {
+        problem: 'Scaling job execution for large infrastructure',
+        solution: 'Configured distributed execution nodes and optimized job queuing with Redis backend'
+      },
+      {
+        problem: 'Integration with existing CI/CD pipelines',
+        solution: 'Developed REST API integrations and webhook triggers for seamless automation workflows'
+      }
+    ],
+    screenshots: [
+      {
+        url: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800',
+        caption: 'AWX Dashboard Overview'
+      },
+      {
+        url: 'https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800',
+        caption: 'Job Template Configuration'
+      },
+      {
+        url: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800',
+        caption: 'Inventory and Host Management'
+      },
+      {
+        url: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800',
+        caption: 'Job Execution Monitoring'
+      }
+    ],
+    architecture: {
+      diagram: 'https://images.pexels.com/photos/3184483/pexels-photo-3184483.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      description: 'AWX architecture showing web interface, API gateway, job execution nodes, PostgreSQL database, Redis cache, and integration with external LDAP and Git repositories for comprehensive automation management.'
+    }
+  },
+
+  'openstack-kolla': {
+    id: 'openstack-kolla',
+    name: 'Multi-Node OpenStack Kolla Deployment',
+    description: 'Production-ready multi-node OpenStack cloud deployment using Kolla-Ansible with high availability and automated container orchestration.',
+    longDescription: 'Designed and deployed a scalable multi-node OpenStack cloud infrastructure using Kolla-Ansible for containerized deployment. The setup includes Nova, Neutron, Cinder, Glance, Keystone, and Horizon services with high availability configuration, load balancing, and comprehensive monitoring.',
+    technologies: ['OpenStack', 'Kolla-Ansible', 'Docker', 'HAProxy', 'MariaDB Galera', 'RabbitMQ', 'Memcached', 'Ceph'],
+    mainImage: 'https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1600',
+    liveUrl: '#',
+    githubUrl: 'https://github.com/Dhankarabhi',
+    stats: {
+      duration: '8 Weeks',
+      complexity: 'Expert',
+      impact: '10x Scale'
+    },
+    features: [
+      'Multi-node OpenStack deployment with HA configuration',
+      'Containerized services using Kolla-Ansible automation',
+      'Neutron networking with VXLAN and provider networks',
+      'Cinder block storage with Ceph backend integration',
+      'Load balancing with HAProxy for API endpoints',
+      'MariaDB Galera cluster for database high availability',
+      'Integrated monitoring with Prometheus and Grafana',
+      'Automated backup and disaster recovery procedures'
+    ],
+    challenges: [
+      {
+        problem: 'Complex networking configuration across multiple nodes',
+        solution: 'Implemented VXLAN overlay networks with proper VLAN tagging and routing configuration'
+      },
+      {
+        problem: 'Database cluster synchronization and split-brain scenarios',
+        solution: 'Configured MariaDB Galera cluster with proper quorum settings and automated recovery procedures'
+      },
+      {
+        problem: 'Storage performance optimization for virtual machines',
+        solution: 'Integrated Ceph distributed storage with SSD caching and optimized placement groups'
+      }
+    ],
+    screenshots: [
+      {
+        url: 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800',
+        caption: 'OpenStack Horizon Dashboard'
+      },
+      {
+        url: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800',
+        caption: 'Nova Compute Service Overview'
+      },
+      {
+        url: 'https://images.pexels.com/photos/3184287/pexels-photo-3184287.jpeg?auto=compress&cs=tinysrgb&w=800',
+        caption: 'Neutron Network Topology'
+      },
+      {
+        url: 'https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=800',
+        caption: 'Ceph Storage Cluster Status'
+      }
+    ],
+    architecture: {
+      diagram: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      description: 'OpenStack multi-node architecture showing controller nodes with HA, compute nodes, storage nodes with Ceph, network nodes with Neutron, and load balancers providing high availability for all API services.'
+    }
   }
 };
 
