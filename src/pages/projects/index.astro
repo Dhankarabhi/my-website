@@ -6,6 +6,7 @@ import AppHeader from '../../components/Header.astro';
 import AppFooter from '../../components/Footer.astro';
 import CallToAction from '../../components/CallToAction.astro';
 import Bars from '../../components/Bars.astro';
+import Reveal from '../../components/Reveal.jsx';
 import { getAllProjects } from '../../projectData.ts';
 
 import svgUnderline from '../../assets/underline.svg'
@@ -34,13 +35,23 @@ const projects = getAllProjects();
 
     <!-- Projects Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mb-15">
-      {projects.map(project => (
-        <div class="bg-white border-3 shadow-[6px_6px_0px_rgba(0,0,0,0.3)] group hover:shadow-[12px_12px_0px_rgba(0,0,0,0.3)] hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
+      {projects.map((project, index) => (
+        <Reveal client:visible as="div" delay={(index % 2) * 120} className="bg-white border-3 shadow-[6px_6px_0px_rgba(0,0,0,0.3)] group hover:shadow-[12px_12px_0px_rgba(0,0,0,0.3)] hover:-translate-y-2 transition-all duration-300 relative overflow-hidden">
           <Bars />
           
           <!-- Project Image -->
-          <div class="w-full h-[250px] overflow-hidden border-b-3">
-            <img src={project.mainImage} alt={project.name} class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+          <div class="w-full h-[250px] overflow-hidden border-b-3 bg-gray-100 relative flex items-center justify-center">
+            <div class="absolute inset-0 flex flex-col items-center justify-center gap-1 text-gray-400">
+              <span class="text-3xl">🖼️</span>
+              <span class="text-xs font-medium">Image not available</span>
+            </div>
+            <img
+              src={project.mainImage}
+              alt={project.name}
+              class="relative w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              loading="lazy"
+              onerror="this.style.display='none';"
+            />
           </div>
 
           <!-- Project Content -->
@@ -66,8 +77,8 @@ const projects = getAllProjects();
             <!-- Stats -->
             <div class="grid grid-cols-3 gap-3 mb-6 text-center">
               <div class="bg-gray-50 border border-black p-2">
-                <div class="text-sm font-bold text-[var(--blue)]">{project.stats.duration}</div>
-                <div class="text-xs text-gray-600">Duration</div>
+                <div class="text-sm font-bold text-[var(--blue)]">{project.stats.environment}</div>
+                <div class="text-xs text-gray-600">Environment</div>
               </div>
               <div class="bg-gray-50 border border-black p-2">
                 <div class="text-sm font-bold text-[var(--blue)]">{project.stats.complexity}</div>
@@ -84,12 +95,14 @@ const projects = getAllProjects();
               <a href={`/projects/${project.id}`} class="flex-1 bg-black text-white text-center py-3 px-4 font-medium border-2 border-black hover:bg-white hover:text-black transition-colors duration-200">
                 View Details
               </a>
-              <a href={project.liveUrl} target="_blank" class="flex items-center justify-center w-12 h-12 bg-[var(--yellow)] border-2 border-black hover:bg-white transition-colors duration-200">
-                <img src={arrowCard.src} alt="external link" width="20" />
-              </a>
+              {project.githubUrl && (
+                <a href={project.githubUrl} target="_blank" class="flex items-center justify-center w-12 h-12 bg-[var(--yellow)] border-2 border-black hover:bg-white transition-colors duration-200">
+                  <img src={arrowCard.src} alt="github repository" width="20" />
+                </a>
+              )}
             </div>
           </div>
-        </div>
+        </Reveal>
       ))}
     </div>
 

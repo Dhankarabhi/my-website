@@ -1,0 +1,62 @@
+---
+import svgPinkStar from '../assets/pink-star.svg'
+
+const stages = [
+  { name: "Code", icon: "💻" },
+  { name: "Build", icon: "🔧" },
+  { name: "Test", icon: "🧪" },
+  { name: "Deploy", icon: "🚀" },
+  { name: "Monitor", icon: "📊" },
+]
+---
+
+<section class="px-5 py-16 relative overflow-hidden">
+  <img src={svgPinkStar.src} alt="" width="50" class="absolute -right-6 top-8 opacity-30" />
+
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-16">
+      <span class="block text-sm font-bold uppercase tracking-[0.2em] text-[var(--blue)] mb-2">Workflow</span>
+      <h2 class="text-3xl md:text-4xl font-medium">CI/CD Pipeline in Action</h2>
+    </div>
+
+    <div class="relative flex flex-col md:flex-row items-center justify-between gap-10 md:gap-0 md:px-8">
+      <!-- Connecting line (desktop only) -->
+      <div class="hidden md:block absolute top-8 left-16 right-16 h-1.5 bg-gray-200 rounded-full">
+        <!-- Traveling dot: simple left 0%->100%, guaranteed visible -->
+        <span class="absolute -top-1.5 w-4 h-4 rounded-full bg-[var(--blue)] border-2 border-black shadow-[0_0_10px_rgba(186,230,255,0.9)] animate-pipeline-dot"></span>
+      </div>
+
+      {stages.map((stage, index) => (
+        <div class="relative flex flex-col items-center gap-3 z-10">
+          <div
+            class="flex items-center justify-center w-16 h-16 rounded-full bg-white border-3 border-black text-2xl shadow-[4px_4px_0px_rgba(0,0,0,0.3)] animate-node-pulse"
+            style={`animation-delay: ${index * 0.7}s`}
+          >
+            {stage.icon}
+          </div>
+          <span class="font-bold text-sm uppercase tracking-wide">{stage.name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes pipeline-dot {
+    0% { left: 0%; opacity: 0; }
+    5% { opacity: 1; }
+    95% { opacity: 1; }
+    100% { left: 100%; opacity: 0; }
+  }
+  .animate-pipeline-dot {
+    animation: pipeline-dot 3.5s linear infinite;
+  }
+
+  @keyframes node-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.12); box-shadow: 4px 4px 0px rgba(0,0,0,0.3), 0 0 0 6px rgba(186, 230, 255, 0.5); }
+  }
+  .animate-node-pulse {
+    animation: node-pulse 3.5s ease-in-out infinite;
+  }
+</style>

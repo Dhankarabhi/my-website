@@ -7,10 +7,8 @@ const links = [
     { name: 'About', path: '/', target: '_self' },
     { name: 'Portfolio', path: '/#work', target: '_self' },
     { name: 'Blog', path: '/blog/', target: '_self' },
-    { name: 'Contact', path: '#hire', target: '_self' },
+    { name: 'Contact', path: '/#hire', target: '_self' },
 ]
-
-const { pathname } = Astro.url
 ---
 
 <header class="relative border-b-3 p-7 overflow-hidden bg-white sticky top-0 z-50 animate-slide-down">
@@ -40,7 +38,7 @@ const { pathname } = Astro.url
                     <span class="group-hover:animate-bounce">📱</span>
                     <span>+91 70782 06056</span>
                 </a>
-                <a href="mailto:abhishekchoudhary2440@gmail.com" class="group flex items-center gap-2 px-4 py-2 bg-[var(--blue)] border-2 border-black text-sm font-medium hover:bg-[var(--yellow)] hover:scale-105 transition-all duration-300 hover:shadow-[2px_2px_0px_rgba(0,0,0,0.3)]">
+                <a href="mailto:abhishekchoudhary2440@gmail.com" class="group flex items-center gap-2 px-4 py-2 bg-[var(--yellow)] border-2 border-black text-sm font-medium hover:bg-[var(--blue)] hover:scale-105 transition-all duration-300 hover:shadow-[2px_2px_0px_rgba(0,0,0,0.3)]">
                     <span class="group-hover:animate-bounce">📧</span>
                     <span class="hidden xl:inline">Email</span>
                 </a>
@@ -57,10 +55,7 @@ const { pathname } = Astro.url
                     <li class="border-l-2 border-black last:border-r-2 group/nav">
                         <a href={item.path} target={item.target} class="relative flex items-center p-3 py-4 whitespace-nowrap font-medium overflow-hidden hover:bg-[var(--yellow)] transition-all duration-300 group/link" style={`animation-delay: ${index * 100}ms`}>
                             <span class="relative z-10 group-hover/link:translate-x-1 transition-transform duration-300">
-                                {item.name} 
-                                {pathname == item.path ? (
-                                    <span class="text-[var(--blue)] animate-pulse"> //</span>
-                                ) : ''}
+                                {item.name}
                             </span>
                             <div class="absolute bottom-0 left-0 w-0 h-1 bg-[var(--blue)] group-hover/link:w-full transition-all duration-300"></div>
                             <div class="absolute inset-0 bg-gradient-to-r from-transparent to-[var(--yellow)] opacity-0 group-hover/link:opacity-20 transition-opacity duration-300"></div>
@@ -88,7 +83,7 @@ const { pathname } = Astro.url
     <div class="mb-8 animate-slide-up" style="animation-delay: 0.2s">
         <div class="p-6 bg-gradient-to-r from-[var(--yellow)] to-[var(--blue)] border-3 border-black shadow-[4px_4px_0px_rgba(0,0,0,0.3)]">
             <h4 class="font-bold text-lg mb-4 animate-fade-in">Get In Touch</h4>
-            <a href="tel:+917078206056" class="group flex items-center gap-3 mb-3 p-3 bg-white border-2 border-black hover:bg-[var(--yellow)] transition-all duration-300 hover:scale-105">
+            <a href="tel:+917078206056" class="group flex items-center gap-3 mb-3 p-3 bg-white border-2 border-black hover:bg-[var(--blue)] transition-all duration-300 hover:scale-105">
                 <span class="text-xl group-hover:animate-bounce">📱</span>
                 <span class="font-medium">+91 70782 06056</span>
             </a>
@@ -106,10 +101,7 @@ const { pathname } = Astro.url
                 <a href={item.path} target={item.target} class="group flex items-center gap-4 p-4 text-xl font-bold hover:bg-[var(--yellow)] transition-all duration-300 border-2 border-transparent hover:border-black hover:shadow-[2px_2px_0px_rgba(0,0,0,0.3)]">
                     <span class="text-2xl group-hover:animate-bounce">→</span>
                     <span class="group-hover:translate-x-2 transition-transform duration-300">
-                        {item.name} 
-                        {pathname == item.path ? (
-                            <span class="text-[var(--blue)] animate-pulse"> //</span>
-                        ) : ''}
+                        {item.name}
                     </span>
                 </a>
             </li>
@@ -118,7 +110,7 @@ const { pathname } = Astro.url
 
     <!-- Mobile CTA with animation -->
     <div class="space-y-3 animate-slide-up" style="animation-delay: 0.8s">
-        <a href="#hire" class="block w-full bg-black text-white text-center py-4 px-6 font-bold border-3 border-black hover:bg-[var(--yellow)] hover:text-black transition-all duration-300 hover:scale-105 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.3)]">
+        <a href="/#hire" class="block w-full bg-black text-white text-center py-4 px-6 font-bold border-3 border-black hover:bg-[var(--yellow)] hover:text-black transition-all duration-300 hover:scale-105 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.3)]">
             🚀 Hire Me Now
         </a>
         <a href="/resume.pdf" target="_blank" class="block w-full bg-[var(--blue)] text-black text-center py-4 px-6 font-bold border-3 border-black hover:bg-[var(--yellow)] transition-all duration-300 hover:scale-105 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.3)]">

@@ -8,10 +8,9 @@ export type Project = {
   longDescription: string;
   technologies: string[];
   mainImage: string;
-  liveUrl: string;
-  githubUrl: string;
+  githubUrl?: string;
   stats: {
-    duration: string;
+    environment: string;
     complexity: string;
     impact: string;
   };
@@ -56,11 +55,10 @@ export const projects: Record<string, Project> = {
       "RabbitMQ",
       "Linux Networking"
     ],
-    mainImage: "/projects/openstack_main.jpg",
-    liveUrl: "#",
-    githubUrl: "https://github.com/Dhankarabhi",
+    mainImage: "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    // githubUrl: "https://github.com/Dhankarabhi", // uncomment & set real repo link to enable this project's GitHub button
     stats: {
-      duration: "8 Weeks",
+      environment: "Lab / HA Cluster",
       complexity: "Advanced",
       impact: "HA Cloud Deployment"
     },
@@ -120,11 +118,10 @@ export const projects: Record<string, Project> = {
       "Helm",
       "SonarQube"
     ],
-    mainImage: "/projects/cicd_main.jpg",
-    liveUrl: "#",
-    githubUrl: "https://github.com/Dhankarabhi",
+    mainImage: "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    // githubUrl: "https://github.com/Dhankarabhi", // uncomment & set real repo link to enable this project's GitHub button
     stats: {
-      duration: "3 Months",
+      environment: "Production",
       complexity: "Advanced",
       impact: "Faster Deployments"
     },
@@ -157,11 +154,10 @@ export const projects: Record<string, Project> = {
     longDescription:
       "Provisioned production-style AWS infrastructure including VPC, subnets, load balancers, EC2 instances, and RDS databases using Infrastructure as Code.\n\nFocus was on high availability, cost optimization, and automation.",
     technologies: ["AWS", "Terraform", "Ansible", "RDS", "CloudWatch"],
-    mainImage: "/projects/aws_main.jpg",
-    liveUrl: "#",
-    githubUrl: "https://github.com/Dhankarabhi",
+    mainImage: "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    // githubUrl: "https://github.com/Dhankarabhi", // uncomment & set real repo link to enable this project's GitHub button
     stats: {
-      duration: "4 Months",
+      environment: "Production",
       complexity: "Advanced",
       impact: "99.9% Uptime"
     },
@@ -186,18 +182,17 @@ export const projects: Record<string, Project> = {
   // ===============================
   "monitoring-observability": {
     id: "monitoring-observability",
-    featured: false,
+    featured: true,
     name: "Monitoring & Observability Stack",
     description:
       "Prometheus, Grafana and ELK based monitoring setup.",
     longDescription:
       "Built centralized logging and metrics monitoring stack to track application performance and infrastructure health.",
     technologies: ["Prometheus", "Grafana", "ELK Stack"],
-    mainImage: "/projects/monitoring_main.jpg",
-    liveUrl: "#",
-    githubUrl: "https://github.com/Dhankarabhi",
+    mainImage: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    // githubUrl: "https://github.com/Dhankarabhi", // uncomment & set real repo link to enable this project's GitHub button
     stats: {
-      duration: "2 Months",
+      environment: "Production",
       complexity: "Intermediate",
       impact: "Improved Visibility"
     },

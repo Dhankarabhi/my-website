@@ -6,6 +6,7 @@ import AppFooter from '../components/Footer.astro';
 import CallToAction from '../components/CallToAction.astro';
 import Button from '../components/Button.astro';
 import Bars from '../components/Bars.astro';
+import Reveal from '../components/Reveal.jsx';
 
 import svgPinkStar from '../assets/pink-star.svg'
 import svgRedStar from '../assets/red-star.svg'
@@ -34,7 +35,7 @@ const { project } = Astro.props;
       {project && (
         <>
           <!-- Project Header -->
-          <div class="bg-white border-3 shadow-[8px_8px_0px_rgba(0,0,0,0.3)] p-8 mb-10 relative">
+          <Reveal client:load as="div" className="bg-white border-3 shadow-[8px_8px_0px_rgba(0,0,0,0.3)] p-8 mb-10 relative">
             <Bars />
 
             <div class="grid grid-cols-1 md:grid-cols-[60%_40%] gap-8 items-center">
@@ -57,27 +58,34 @@ const { project } = Astro.props;
                 )}
 
                 <div class="flex flex-col sm:flex-row gap-4">
-                  <Button text="View Live Demo" link={project.liveUrl} target="_blank" />
-                  <Button text="GitHub Repository" link={project.githubUrl} target="_blank" />
+                  {project.githubUrl && (
+                    <Button text="GitHub Repository" link={project.githubUrl} target="_blank" />
+                  )}
                 </div>
               </div>
 
               <!-- Main Image -->
               <div class="relative">
                 <div
-                  class="w-full h-[280px] border-3 overflow-hidden bg-gray-100 cursor-pointer relative group"
+                  class="w-full h-[280px] border-3 overflow-hidden bg-gray-100 cursor-pointer relative group flex items-center justify-center"
                   data-image={project.mainImage}
                   data-caption={`${project.name} - Main Project Image`}
                 >
+                  <!-- Placeholder shown by default; image sits on top and hides the placeholder once loaded -->
+                  <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 text-gray-400">
+                    <span class="text-4xl">🖼️</span>
+                    <span class="text-xs font-medium">Image not available</span>
+                  </div>
+
                   <img
                     src={project.mainImage}
                     alt={project.name}
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    class="relative w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
-                    onerror="this.style.display='none'; this.parentElement.classList.add('bg-black');"
+                    onerror="this.style.display='none';"
                   />
 
-                  <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                  <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center pointer-events-none">
                     <div class="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       🔍
                     </div>
@@ -87,14 +95,14 @@ const { project } = Astro.props;
                 <img src={svgPinkStar.src} alt="star" width="30" class="absolute -top-3 -right-3" />
               </div>
             </div>
-          </div>
+          </Reveal>
 
           <!-- Stats -->
           {project.stats && (
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+            <Reveal client:visible as="div" className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
               <div class="bg-white border-2 p-6 text-center">
-                <h3 class="text-2xl font-bold text-[var(--blue)] mb-2">{project.stats.duration}</h3>
-                <p class="font-medium">Development Time</p>
+                <h3 class="text-2xl font-bold text-[var(--blue)] mb-2">{project.stats.environment}</h3>
+                <p class="font-medium">Environment Type</p>
               </div>
               <div class="bg-white border-2 p-6 text-center">
                 <h3 class="text-2xl font-bold text-[var(--blue)] mb-2">{project.stats.complexity}</h3>
@@ -104,11 +112,11 @@ const { project } = Astro.props;
                 <h3 class="text-2xl font-bold text-[var(--blue)] mb-2">{project.stats.impact}</h3>
                 <p class="font-medium">Performance Impact</p>
               </div>
-            </div>
+            </Reveal>
           )}
 
           <!-- Overview -->
-          <div class="bg-white border-3 p-8 mb-10">
+          <Reveal client:visible as="div" className="bg-white border-3 p-8 mb-10">
             <h2 class="text-3xl font-bold mb-6">Project Overview</h2>
             <p class="text-lg leading-relaxed mb-6">{project.longDescription}</p>
 
@@ -139,7 +147,7 @@ const { project } = Astro.props;
                 </div>
               </>
             )}
-          </div>
+          </Reveal>
 
           <!-- Screenshots (SAFE) -->
           {project.screenshots && project.screenshots.length > 0 && (
@@ -147,8 +155,8 @@ const { project } = Astro.props;
               <h2 class="text-3xl font-bold mb-6 text-center">Project Screenshots</h2>
 
               <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {project.screenshots.map((screenshot) => (
-                  <div class="bg-white border-2 p-4 group hover:shadow-[4px_4px_0px_rgba(0,0,0,0.3)] transition-all duration-200">
+                {project.screenshots.map((screenshot, index) => (
+                  <Reveal client:visible as="div" delay={(index % 2) * 100} className="bg-white border-2 p-4 group hover:shadow-[4px_4px_0px_rgba(0,0,0,0.3)] transition-all duration-200">
                     <div
                       class="w-full h-[200px] border-2 overflow-hidden mb-3 cursor-pointer"
                       data-image={screenshot.url}
@@ -162,7 +170,7 @@ const { project } = Astro.props;
                       />
                     </div>
                     <p class="text-sm font-medium text-center">{screenshot.caption}</p>
-                  </div>
+                  </Reveal>
                 ))}
               </div>
             </div>
@@ -170,23 +178,29 @@ const { project } = Astro.props;
 
           <!-- Architecture -->
           {project.architecture && (
-            <div class="bg-white border-3 p-8 mb-10">
+            <Reveal client:visible as="div" className="bg-white border-3 p-8 mb-10">
               <h2 class="text-3xl font-bold mb-6">System Architecture</h2>
 
               <div
-                class="w-full h-[300px] border-2 bg-gray-50 flex items-center justify-center mb-4 cursor-pointer"
+                class="w-full h-[300px] border-2 bg-gray-50 flex items-center justify-center mb-4 cursor-pointer relative"
                 data-image={project.architecture.diagram}
                 data-caption={`${project.name} - Architecture Diagram`}
               >
+                <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 text-gray-400">
+                  <span class="text-4xl">🗺️</span>
+                  <span class="text-xs font-medium">Diagram not available</span>
+                </div>
+
                 <img
                   src={project.architecture.diagram}
                   alt="Architecture Diagram"
-                  class="max-w-full max-h-full object-contain"
+                  class="relative max-w-full max-h-full object-contain"
+                  onerror="this.style.display='none';"
                 />
               </div>
 
               <p class="text-gray-700">{project.architecture.description}</p>
-            </div>
+            </Reveal>
           )}
 
           <div class="text-center">
@@ -212,23 +226,38 @@ const { project } = Astro.props;
   </div>
 
   <script>
+    import { gsap } from 'gsap';
+
     document.addEventListener('DOMContentLoaded', function () {
       const modal = document.getElementById('imageModal');
+      const modalBox = modal?.querySelector(':scope > div');
       const modalImage = document.getElementById('modalImage');
       const modalCaption = document.getElementById('modalCaption');
       const closeBtn = document.getElementById('closeModal');
 
       function openModal(imageSrc, caption) {
-        if (!imageSrc) return;
+        if (!imageSrc || !modal) return;
         modalImage.src = imageSrc;
         modalCaption.textContent = caption || "";
         modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
+
+        gsap.fromTo(modal, { opacity: 0 }, { opacity: 1, duration: 0.25, ease: 'power2.out' });
+        gsap.fromTo(modalBox, { opacity: 0, scale: 0.92, y: 20 }, { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: 'back.out(1.7)' });
       }
 
       function closeModal() {
-        modal.classList.add('hidden');
-        document.body.style.overflow = 'auto';
+        if (!modal) return;
+        gsap.to(modalBox, { opacity: 0, scale: 0.95, y: 10, duration: 0.2, ease: 'power2.in' });
+        gsap.to(modal, {
+          opacity: 0,
+          duration: 0.2,
+          ease: 'power2.in',
+          onComplete: () => {
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+          },
+        });
       }
 
       document.querySelectorAll('[data-image]').forEach(function (el) {
@@ -245,7 +274,7 @@ const { project } = Astro.props;
         if (e.target === modal) closeModal();
       });
       document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeModal();
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
       });
     });
   </script>
