@@ -9,16 +9,15 @@ const { variant = "right" } = Astro.props;
 
 {(variant === "left" || variant === "both") && (
   <>
-    <span class="pointer-events-none select-none absolute left-2 top-1/4 text-2xl opacity-25 hidden md:block animate-tech-float-a" aria-hidden="true">🐳</span>
-    <span class="pointer-events-none select-none absolute left-8 bottom-10 text-xl opacity-20 hidden md:block animate-tech-float-b" aria-hidden="true">☸️</span>
+    <span class="pointer-events-none select-none absolute left-2 top-6 text-3xl opacity-70 z-20 animate-tech-float-a" aria-hidden="true">🐳</span>
+    <span class="pointer-events-none select-none absolute left-6 bottom-6 text-3xl opacity-70 z-20 animate-tech-float-b" aria-hidden="true">☸️</span>
   </>
 )}
 
 {(variant === "right" || variant === "both") && (
   <>
-    <span class="pointer-events-none select-none absolute right-3 top-10 text-2xl opacity-25 hidden md:block animate-tech-float-b" aria-hidden="true">⚙️</span>
-    <span class="pointer-events-none select-none absolute right-10 bottom-1/4 text-xl opacity-20 hidden md:block animate-tech-float-a" aria-hidden="true">☁️</span>
-    <span class="pointer-events-none select-none absolute right-4 bottom-6 font-mono text-[11px] opacity-0 hidden lg:block bg-black text-green-400 px-2 py-1 rounded animate-command-blip" aria-hidden="true">$ kubectl apply -f .</span>
+    <span class="pointer-events-none select-none absolute right-3 top-6 text-3xl opacity-70 z-20 animate-tech-float-b" aria-hidden="true">⚙️</span>
+    <span class="pointer-events-none select-none absolute right-8 bottom-6 text-3xl opacity-70 z-20 animate-tech-float-a" aria-hidden="true">☁️</span>
   </>
 )}
 
@@ -33,12 +32,4 @@ const { variant = "right" } = Astro.props;
   }
   .animate-tech-float-a { animation: tech-float-a 5s ease-in-out infinite; }
   .animate-tech-float-b { animation: tech-float-b 6s ease-in-out infinite; }
-
-  @keyframes command-blip {
-    0%, 100% { opacity: 0; transform: translateY(6px); }
-    10%, 90% { opacity: 0.85; transform: translateY(0); }
-  }
-  .animate-command-blip {
-    animation: command-blip 8s ease-in-out infinite;
-  }
 </style>

@@ -1,6 +1,7 @@
 ---
 import svgPinkStar from '../assets/pink-star.svg'
 import svgRedStar from '../assets/red-star.svg'
+import TechFloaters from './TechFloaters.astro'
 
 const achievements = [
   { 
@@ -80,6 +81,7 @@ const stats = [
 ---
 
 <section class="py-12 px-5 relative overflow-hidden">
+  <TechFloaters variant="right" />
   <img src={svgPinkStar.src} alt="svg" width="60" class="absolute -right-6 top-10 opacity-20 animate-pulse" />
   <img src={svgRedStar.src} alt="svg" width="40" class="absolute left-10 bottom-20 opacity-20 animate-bounce" />
   

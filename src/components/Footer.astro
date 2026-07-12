@@ -2,6 +2,7 @@
 import logoStar from '../assets/logo-star.svg'
 import svgPinkStar from '../assets/pink-star.svg'
 import { author } from '../sample'
+import TechFloaters from './TechFloaters.astro'
 
 const socials = [
   { icon: 'ri-linkedin-fill', link: author.linkedin, name: 'LinkedIn' },
@@ -26,6 +27,7 @@ const stats = [
 ---
 
 <footer class="border-t-4 px-5 md:px-0 py-16 relative overflow-hidden bg-white">
+  <TechFloaters variant="right" />
   <!-- Floating background elements -->
   <img src={svgPinkStar.src} alt="star" width="50" class="absolute right-10 top-10 opacity-20 animate-float" />
   <img src={svgPinkStar.src} alt="star" width="40" class="absolute left-20 bottom-20 opacity-15 animate-bounce-slow" />
