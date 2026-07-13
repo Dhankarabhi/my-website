@@ -2,9 +2,11 @@
 import svgPinkStar from '../assets/pink-star.svg'
 import svgRedStar from '../assets/red-star.svg'
 import Button from './Button.astro'
+import TechFloaters from './TechFloaters.astro'
 ---
 
 <section class="px-3 py-20 bg-gray-50 relative overflow-hidden" id="hire">
+  <TechFloaters variant="left" />
   <!-- Floating background elements -->
   <img src={svgRedStar.src} alt="svg" width="50" class="absolute left-10 top-10 opacity-30 animate-float-slow" />
   <img src={svgPinkStar.src} alt="svg" width="40" class="absolute right-20 bottom-20 opacity-20 animate-bounce-slow" />

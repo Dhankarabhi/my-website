@@ -1,0 +1,35 @@
+---
+// Ambient decorative DevOps-tool floaters, dropped into existing sections
+// (same idea as the pink/red star decorations, just tech-themed).
+interface Props {
+  variant?: "left" | "right" | "both";
+}
+const { variant = "right" } = Astro.props;
+---
+
+{(variant === "left" || variant === "both") && (
+  <>
+    <span class="pointer-events-none select-none absolute left-2 top-6 text-3xl opacity-70 z-20 animate-tech-float-a" aria-hidden="true">🐳</span>
+    <span class="pointer-events-none select-none absolute left-6 bottom-6 text-3xl opacity-70 z-20 animate-tech-float-b" aria-hidden="true">☸️</span>
+  </>
+)}
+
+{(variant === "right" || variant === "both") && (
+  <>
+    <span class="pointer-events-none select-none absolute right-3 top-6 text-3xl opacity-70 z-20 animate-tech-float-b" aria-hidden="true">⚙️</span>
+    <span class="pointer-events-none select-none absolute right-8 bottom-6 text-3xl opacity-70 z-20 animate-tech-float-a" aria-hidden="true">☁️</span>
+  </>
+)}
+
+<style>
+  @keyframes tech-float-a {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-14px) rotate(6deg); }
+  }
+  @keyframes tech-float-b {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(12px) rotate(-6deg); }
+  }
+  .animate-tech-float-a { animation: tech-float-a 5s ease-in-out infinite; }
+  .animate-tech-float-b { animation: tech-float-b 6s ease-in-out infinite; }
+</style>

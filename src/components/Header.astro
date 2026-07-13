@@ -4,13 +4,11 @@ import svgPinkStar from '../assets/pink-star.svg'
 import { author, buy } from '../sample'
 
 const links = [
-    { name: 'About', path: '/', target: '_self' },
+    { name: 'About', path: '#', target: '_self', action: 'about-modal' },
     { name: 'Portfolio', path: '/#work', target: '_self' },
     { name: 'Blog', path: '/blog/', target: '_self' },
-    { name: 'Contact', path: '#hire', target: '_self' },
+    { name: 'Contact', path: '/#hire', target: '_self' },
 ]
-
-const { pathname } = Astro.url
 ---
 
 <header class="relative border-b-3 p-7 overflow-hidden bg-white sticky top-0 z-50 animate-slide-down">
@@ -40,7 +38,7 @@ const { pathname } = Astro.url
                     <span class="group-hover:animate-bounce">📱</span>
                     <span>+91 70782 06056</span>
                 </a>
-                <a href="mailto:abhishekchoudhary2440@gmail.com" class="group flex items-center gap-2 px-4 py-2 bg-[var(--blue)] border-2 border-black text-sm font-medium hover:bg-[var(--yellow)] hover:scale-105 transition-all duration-300 hover:shadow-[2px_2px_0px_rgba(0,0,0,0.3)]">
+                <a href="mailto:abhishekchoudhary2440@gmail.com" class="group flex items-center gap-2 px-4 py-2 bg-[var(--yellow)] border-2 border-black text-sm font-medium hover:bg-[var(--blue)] hover:scale-105 transition-all duration-300 hover:shadow-[2px_2px_0px_rgba(0,0,0,0.3)]">
                     <span class="group-hover:animate-bounce">📧</span>
                     <span class="hidden xl:inline">Email</span>
                 </a>
@@ -55,12 +53,15 @@ const { pathname } = Astro.url
             <ul class="hidden md:flex animate-slide-right">
                 {links.map((item, index) => ( 
                     <li class="border-l-2 border-black last:border-r-2 group/nav">
-                        <a href={item.path} target={item.target} class="relative flex items-center p-3 py-4 whitespace-nowrap font-medium overflow-hidden hover:bg-[var(--yellow)] transition-all duration-300 group/link" style={`animation-delay: ${index * 100}ms`}>
+                        <a
+                            href={item.path}
+                            target={item.target}
+                            data-trigger={item.action === 'about-modal' ? 'about-modal' : undefined}
+                            class="relative flex items-center p-3 py-4 whitespace-nowrap font-medium overflow-hidden hover:bg-[var(--yellow)] transition-all duration-300 group/link cursor-pointer"
+                            style={`animation-delay: ${index * 100}ms`}
+                        >
                             <span class="relative z-10 group-hover/link:translate-x-1 transition-transform duration-300">
-                                {item.name} 
-                                {pathname == item.path ? (
-                                    <span class="text-[var(--blue)] animate-pulse"> //</span>
-                                ) : ''}
+                                {item.name}
                             </span>
                             <div class="absolute bottom-0 left-0 w-0 h-1 bg-[var(--blue)] group-hover/link:w-full transition-all duration-300"></div>
                             <div class="absolute inset-0 bg-gradient-to-r from-transparent to-[var(--yellow)] opacity-0 group-hover/link:opacity-20 transition-opacity duration-300"></div>
@@ -88,7 +89,7 @@ const { pathname } = Astro.url
     <div class="mb-8 animate-slide-up" style="animation-delay: 0.2s">
         <div class="p-6 bg-gradient-to-r from-[var(--yellow)] to-[var(--blue)] border-3 border-black shadow-[4px_4px_0px_rgba(0,0,0,0.3)]">
             <h4 class="font-bold text-lg mb-4 animate-fade-in">Get In Touch</h4>
-            <a href="tel:+917078206056" class="group flex items-center gap-3 mb-3 p-3 bg-white border-2 border-black hover:bg-[var(--yellow)] transition-all duration-300 hover:scale-105">
+            <a href="tel:+917078206056" class="group flex items-center gap-3 mb-3 p-3 bg-white border-2 border-black hover:bg-[var(--blue)] transition-all duration-300 hover:scale-105">
                 <span class="text-xl group-hover:animate-bounce">📱</span>
                 <span class="font-medium">+91 70782 06056</span>
             </a>
@@ -103,13 +104,15 @@ const { pathname } = Astro.url
     <ul class="flex flex-col gap-2 mb-8">
         {links.map((item, index) => ( 
             <li class="animate-slide-left" style={`animation-delay: ${0.3 + index * 0.1}s`}>
-                <a href={item.path} target={item.target} class="group flex items-center gap-4 p-4 text-xl font-bold hover:bg-[var(--yellow)] transition-all duration-300 border-2 border-transparent hover:border-black hover:shadow-[2px_2px_0px_rgba(0,0,0,0.3)]">
+                <a
+                    href={item.path}
+                    target={item.target}
+                    data-trigger={item.action === 'about-modal' ? 'about-modal' : undefined}
+                    class="group flex items-center gap-4 p-4 text-xl font-bold hover:bg-[var(--yellow)] transition-all duration-300 border-2 border-transparent hover:border-black hover:shadow-[2px_2px_0px_rgba(0,0,0,0.3)]"
+                >
                     <span class="text-2xl group-hover:animate-bounce">→</span>
                     <span class="group-hover:translate-x-2 transition-transform duration-300">
-                        {item.name} 
-                        {pathname == item.path ? (
-                            <span class="text-[var(--blue)] animate-pulse"> //</span>
-                        ) : ''}
+                        {item.name}
                     </span>
                 </a>
             </li>
@@ -118,12 +121,64 @@ const { pathname } = Astro.url
 
     <!-- Mobile CTA with animation -->
     <div class="space-y-3 animate-slide-up" style="animation-delay: 0.8s">
-        <a href="#hire" class="block w-full bg-black text-white text-center py-4 px-6 font-bold border-3 border-black hover:bg-[var(--yellow)] hover:text-black transition-all duration-300 hover:scale-105 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.3)]">
+        <a href="/#hire" class="block w-full bg-black text-white text-center py-4 px-6 font-bold border-3 border-black hover:bg-[var(--yellow)] hover:text-black transition-all duration-300 hover:scale-105 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.3)]">
             🚀 Hire Me Now
         </a>
         <a href="/resume.pdf" target="_blank" class="block w-full bg-[var(--blue)] text-black text-center py-4 px-6 font-bold border-3 border-black hover:bg-[var(--yellow)] transition-all duration-300 hover:scale-105 hover:shadow-[4px_4px_0px_rgba(0,0,0,0.3)]">
             📄 Download Resume
         </a>
+    </div>
+</div>
+
+<!-- About Me modal -->
+<div id="about-modal" class="fixed inset-0 bg-black/60 z-[60] hidden items-center justify-center p-5">
+    <div id="about-modal-card" class="relative bg-white border-3 border-black shadow-[8px_8px_0px_rgba(0,0,0,0.3)] max-w-md w-full p-6 md:p-8">
+        <button id="about-modal-close" aria-label="Close" class="absolute -top-4 -right-4 w-9 h-9 flex items-center justify-center bg-black text-white border-2 border-black hover:bg-[var(--yellow)] hover:text-black transition-colors duration-200">
+            <i class="ri-close-line text-xl"></i>
+        </button>
+
+        <div class="flex flex-col items-center text-center gap-4">
+            <div
+                class="w-24 h-24 rounded-full border-3 border-black shadow-[4px_4px_0px_rgba(0,0,0,0.3)] bg-cover bg-center"
+                style="background-image: url('/abhishek.jpg');"
+            ></div>
+
+            <div>
+                <h3 class="text-xl font-bold">{author.name}</h3>
+                <p class="text-sm text-[var(--blue)] font-semibold uppercase tracking-wide mt-1">DevOps Engineer</p>
+            </div>
+
+            <p class="text-gray-700 leading-relaxed">
+                I automate cloud infrastructure and build reliable CI/CD pipelines using
+                Kubernetes, Terraform, and Ansible — turning manual deployments into
+                systems that scale and stay up without hand-holding.
+            </p>
+
+            <div class="flex gap-3 mt-2 w-full">
+                <a
+                    href="tel:+917078206056"
+                    id="about-modal-call"
+                    class="flex-1 flex items-center justify-center gap-2 bg-white text-black font-bold px-4 py-3 border-2 border-black hover:bg-[var(--yellow)] transition-colors duration-200"
+                >
+                    <span>📱</span> Call Me
+                </a>
+                <a
+                    href="mailto:abhishekchoudhary2440@gmail.com"
+                    id="about-modal-email"
+                    class="flex-1 flex items-center justify-center gap-2 bg-white text-black font-bold px-4 py-3 border-2 border-black hover:bg-[var(--blue)] transition-colors duration-200"
+                >
+                    <span>📧</span> Email Me
+                </a>
+            </div>
+
+            <a
+                href="/#hire"
+                id="about-modal-cta"
+                class="w-full inline-block bg-[var(--yellow)] text-black font-bold px-5 py-3 border-2 border-black hover:bg-[var(--blue)] transition-colors duration-200 text-center"
+            >
+                Let's Connect
+            </a>
+        </div>
     </div>
 </div>
 
@@ -150,6 +205,43 @@ document.addEventListener('DOMContentLoaded', function () {
             menuContent?.classList.add('-translate-x-[100%]')
             document.body.style.overflow = 'auto'
         })
+    })
+
+    // About modal
+    const aboutModal = document.querySelector('#about-modal')
+    const aboutModalCard = document.querySelector('#about-modal-card')
+    const aboutModalClose = document.querySelector('#about-modal-close')
+    const aboutTriggers = document.querySelectorAll('[data-trigger="about-modal"]')
+
+    function openAboutModal(e) {
+        e.preventDefault()
+        aboutModal?.classList.remove('hidden')
+        aboutModal?.classList.add('flex')
+        document.body.style.overflow = 'hidden'
+    }
+
+    function closeAboutModal() {
+        aboutModal?.classList.add('hidden')
+        aboutModal?.classList.remove('flex')
+        document.body.style.overflow = 'auto'
+    }
+
+    aboutTriggers.forEach(trigger => {
+        trigger.addEventListener('click', openAboutModal)
+    })
+
+    aboutModalClose?.addEventListener('click', closeAboutModal)
+
+    document.querySelector('#about-modal-cta')?.addEventListener('click', closeAboutModal)
+    document.querySelector('#about-modal-call')?.addEventListener('click', closeAboutModal)
+    document.querySelector('#about-modal-email')?.addEventListener('click', closeAboutModal)
+
+    aboutModal?.addEventListener('click', (e) => {
+        if (e.target === aboutModal) closeAboutModal()
+    })
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !aboutModal?.classList.contains('hidden')) closeAboutModal()
     })
 })
 </script>
@@ -243,5 +335,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
   .animate-fade-in {
     animation: fade-in 1s ease-out forwards;
+  }
+
+  #about-modal:not(.hidden) #about-modal-card {
+    animation: modal-pop 0.3s ease-out forwards;
+  }
+  @keyframes modal-pop {
+    from { opacity: 0; transform: scale(0.9) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
   }
 </style>

@@ -1,0 +1,8 @@
+---
+import ProjectDetail from '../../components/ProjectDetail.astro';
+import { getProject } from '../../projectData.ts';
+
+const project = getProject('terraform-azure-modules');
+---
+
+<ProjectDetail project={project} />
