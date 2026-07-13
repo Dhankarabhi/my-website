@@ -85,7 +85,7 @@ const { project } = Astro.props;
                     onerror="this.style.display='none';"
                   />
 
-                  <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center pointer-events-none">
+                  <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center pointer-events-none">
                     <div class="text-white text-4xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                       🔍
                     </div>
@@ -212,9 +212,9 @@ const { project } = Astro.props;
   </section>
 
   <!-- Modal -->
-  <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4">
+  <div id="imageModal" class="fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
     <div class="relative max-w-6xl max-h-full w-full">
-      <button id="closeModal" class="absolute -top-12 right-0 text-white text-2xl bg-black bg-opacity-50 px-4 py-2 border-2 border-white">
+      <button id="closeModal" class="absolute -top-12 right-0 text-white text-2xl bg-black/50 px-4 py-2 border-2 border-white">
         ✕ Close
       </button>
 

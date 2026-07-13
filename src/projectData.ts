@@ -55,10 +55,10 @@ export const projects: Record<string, Project> = {
       "RabbitMQ",
       "Linux Networking"
     ],
-    mainImage: "https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    mainImage: "/projects/openstack_main.png",
     // githubUrl: "https://github.com/Dhankarabhi", // uncomment & set real repo link to enable this project's GitHub button
     stats: {
-      environment: "Lab / HA Cluster",
+      environment: "Production",
       complexity: "Advanced",
       impact: "HA Cloud Deployment"
     },
@@ -93,7 +93,7 @@ export const projects: Record<string, Project> = {
     //   { url: "/projects/openstack_3.jpg", caption: "Octavia load balancer config" }
     // ],
     architecture: {
-      diagram: "/projects/openstack_arch.jpg",
+      diagram: "/projects/openstack_arch.png",
       description:
         "Architecture includes 3 controller nodes behind HAProxy, Galera cluster, RabbitMQ cluster, Ceph storage backend, and 3 compute nodes connected via VXLAN networking."
     }
@@ -209,6 +209,64 @@ export const projects: Record<string, Project> = {
     ],
     // screenshots: [
     //   { url: "/projects/monitoring_1.jpg", caption: "Grafana dashboard" }
+    // ],
+  },
+
+  // ===============================
+  // 5️⃣ TERRAFORM AZURE MODULE LIBRARY
+  // ===============================
+  "terraform-azure-modules": {
+    id: "terraform-azure-modules",
+    featured: false,
+    name: "Enterprise Azure Terraform Module Library",
+    description:
+      "Production-grade, reusable Terraform module library for Azure, aligned to Microsoft's Cloud Adoption Framework and Azure Landing Zones.",
+    longDescription:
+      "Designed and built a set of independently usable Terraform modules covering management groups, naming conventions, networking, and AKS — targeting Terraform ≥1.9 and the AzureRM ≥4.x provider.\n\nThe networking module (v2) moved to an object-based configuration style split across dedicated files for subnets, NAT gateways, DNS, and diagnostics, making large environments easier to reason about. The AKS module (v2) was simplified down to around 12 required variables while still supporting CNI Overlay, Cilium, Workload Identity, OIDC issuer, CSI Key Vault integration, autoscaling, and Azure Policy.\n\nEvery module follows the same conventions: for_each over count, optional() attributes with sensible defaults, and outputs designed specifically for downstream module consumption — so teams can compose their own landing zones without fighting the module internals.",
+    technologies: [
+      "Terraform",
+      "AzureRM Provider",
+      "Azure CAF",
+      "Azure Landing Zones",
+      "AKS",
+      "Cilium",
+      "Workload Identity",
+      "OIDC"
+    ],
+    mainImage: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    githubUrl: "https://github.com/Dhankarabhi/terraform-az",
+    stats: {
+      environment: "Multi-Environment",
+      complexity: "Advanced",
+      impact: "Reusable Across Projects"
+    },
+    features: [
+      "Management-groups module for Azure CAF-aligned org hierarchy",
+      "Naming module for consistent resource naming across teams",
+      "Networking module v2 — object-based config, dedicated subnets/NAT/DNS/diagnostics files",
+      "AKS module v2 — CNI Overlay, Cilium, Workload Identity, OIDC, CSI Key Vault",
+      "for_each + optional() conventions throughout for safe, flexible usage",
+      "Outputs structured for direct consumption by downstream modules"
+    ],
+    challenges: [
+      {
+        problem: "Upgrading to AzureRM ~4.x surfaced several breaking changes across modules.",
+        solution:
+          "Tested each module against AzureRM 4.79 individually, fixing schema changes iteratively until every module was confirmed independently usable."
+      },
+      {
+        problem: "Early networking module became hard to maintain as a single large file.",
+        solution:
+          "Refactored into an object-based v2 design split across main.tf, subnets.tf, nat_gateway.tf, dns.tf, diagnostics.tf, and locals.tf."
+      },
+      {
+        problem: "AKS module had grown too many required variables, making it hard to adopt.",
+        solution:
+          "Redesigned the interface down to ~12 required variables with sensible optional() defaults for everything else."
+      }
+    ],
+    // screenshots: [
+    //   { url: "/projects/terraform_1.jpg", caption: "Module structure overview" }
     // ],
   }
 };
